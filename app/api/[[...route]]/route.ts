@@ -3,28 +3,38 @@ import { z } from "zod";
 import { Hono } from "hono";
 import { handle } from "hono/vercel";
 
-import { zValidator } from "@hono/zod-validator";
 import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
+
+import accounts from "./accounts";
 
 export const runtime = "edge";
 
 const app = new Hono().basePath("/api");
 
-app.get("/hello", clerkMiddleware(), (c) => {
-  const auth = getAuth(c);
+// app.onError((error, c) => {
+//   if (error instanceof HTTPException) {
+//     return error.getResponse();
+//   }
 
-  if (!auth?.userId) {
-    return c.json({
-      error: "Unauthorized",
-    });
-  }
+//   return c.json({ error: "Internal error" }, 500);
+// });
 
-  return c.json({
-    message: "Hello Next.js 123!",
-    userId: auth.userId,
-    sessionId: auth.sessionId,
-  });
-});
+const routes = app.route("/accounts", accounts);
+// app.get("/hello", clerkMiddleware(), (c) => {
+//   const auth = getAuth(c);
+
+//   if (!auth?.userId) {
+//     return c.json({
+//       error: "Unauthorized",
+//     });
+//   }
+
+//   return c.json({
+//     message: "Hello Next.js 123!",
+//     userId: auth.userId,
+//     sessionId: auth.sessionId,
+//   });
+// });
 
 //   return c.json({
 //     message: "Hello Next.js 123!",
@@ -73,3 +83,5 @@ app.get("/hello", clerkMiddleware(), (c) => {
 
 export const GET = handle(app);
 export const POST = handle(app);
+
+export type AppType = typeof routes;
