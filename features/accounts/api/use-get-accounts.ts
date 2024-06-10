@@ -8,6 +8,7 @@ export const useGetAccounts = () => {
   const query = useQuery({
     queryKey: ["accounts"],
     queryFn: async () => {
+      //* client will get path url from hono.ts
       const response = await client.api.accounts.$get();
 
       if (!response.ok) {
