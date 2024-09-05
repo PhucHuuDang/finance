@@ -37,7 +37,7 @@ export const Navigation = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const pathname = usePathname();
 
-  console.log({ pathname });
+  // console.log({ pathname });
 
   const router = useRouter();
   const isMobile = useMedia("(max-width: 1024px)", false);
