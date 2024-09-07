@@ -51,6 +51,8 @@ export const AccountForm = ({
     onDelete?.();
   };
 
+  console.log({ id });
+
   return (
     <Form {...form}>
       <form

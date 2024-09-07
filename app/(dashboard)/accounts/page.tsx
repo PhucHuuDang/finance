@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNewAccount } from "@/features/accounts/hooks/use-new-account";
 
-import { columns } from "./collumns";
+import { columns } from "./columns";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const AccountsPage = () => {
