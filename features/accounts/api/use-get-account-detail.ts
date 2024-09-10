@@ -7,7 +7,7 @@ import { client } from "@/lib/hono";
 export const useGetAccountDetail = (id?: string) => {
   const query = useQuery({
     enabled: !!id,
-    queryKey: ["accounts", { id }],
+    queryKey: ["account", { id }],
     queryFn: async () => {
       //* client will get path url from hono.ts
       const response = await client.api.accounts[":id"].$get({
